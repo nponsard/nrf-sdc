@@ -155,7 +155,6 @@ fn main() {
         .header("./third_party/nordic/nrfxlib/mpsl/include/mpsl.h")
         .header("./third_party/nordic/nrfxlib/mpsl/include/mpsl_clock.h")
         .header("./third_party/nordic/nrfxlib/mpsl/include/mpsl_ecb.h")
-        .header("./third_party/nordic/nrfxlib/mpsl/include/mpsl_coex.h")
         .header("./third_party/nordic/nrfxlib/mpsl/include/mpsl_cx_abstract_interface.h")
         .header("./third_party/nordic/nrfxlib/mpsl/include/mpsl_pm.h")
         .header("./third_party/nordic/nrfxlib/mpsl/include/mpsl_pm_config.h")

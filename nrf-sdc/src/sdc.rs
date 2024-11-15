@@ -1298,6 +1298,13 @@ pub mod vendor {
     }
 
     cmd! {
+        NordicCoexScanModeConfig(VENDOR_SPECIFIC, 0x0107) {
+            Params = u8;
+            Return = ();
+        }
+    }
+
+    cmd! {
         NordicPeripheralLatencyModeSet(VENDOR_SPECIFIC, 0x0109) {
             Params = NordicPeripheralLatencyModeSetParams;
             Return = ();
@@ -1537,8 +1544,8 @@ pub mod vendor {
     sdc_cmd!(NordicScanChannelMapSet => sdc_hci_cmd_vs_scan_channel_map_set(x));
     sdc_cmd!(NordicScanAcceptExtAdvPacketsSet => sdc_hci_cmd_vs_scan_accept_ext_adv_packets_set(x));
     sdc_cmd!(NordicSetRolePriority => sdc_hci_cmd_vs_set_role_priority(x));
-    sdc_cmd!(NordicSetEventStartTask => sdc_hci_cmd_vs_set_event_start_task(x));
     sdc_cmd!(NordicConnAnchorPointUpdateEventReportEnable => sdc_hci_cmd_vs_conn_anchor_point_update_event_report_enable(x));
+    sdc_cmd!(NordicSetEventStartTask => sdc_hci_cmd_vs_set_event_start_task(x));
 
     impl<'d> ControllerCmdSync<ZephyrReadStaticAddrs> for super::SoftdeviceController<'d> {
         async fn exec(
