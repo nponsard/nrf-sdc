@@ -23,6 +23,12 @@ include = [
 ]
 
 [features]
+nrf52 = ["nrf-mpsl-sys/nrf52"]
+nrf53 = ["nrf-mpsl-sys/nrf53"]
+nrf54l-ns = ["nrf-mpsl-sys/nrf54l-ns"]
+nrf54l-s = ["nrf-mpsl-sys/nrf54l-s"]
+nrf54h = ["nrf-mpsl-sys/nrf54h"]
+
 peripheral = []
 central = []
 

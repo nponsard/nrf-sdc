@@ -36,7 +36,8 @@ static SDC_RNG: AtomicPtr<()> = AtomicPtr::new(core::ptr::null_mut());
 /// However, there's extra restrictions that are not enforced at compile-time
 /// that you must ensure to fulfill manually:
 ///
-/// - Do not use the `ECB`, `CCM` or `AAR` peripherals directly.
+/// - Do not use the `CCM`, `AAR`, or `NVMC` peripherals directly.
+#[cfg(feature = "nrf52")]
 pub struct Peripherals<'d> {
     pub ppi_ch17: PeripheralRef<'d, peripherals::PPI_CH17>,
     pub ppi_ch18: PeripheralRef<'d, peripherals::PPI_CH18>,
@@ -51,9 +52,23 @@ pub struct Peripherals<'d> {
     pub ppi_ch28: PeripheralRef<'d, peripherals::PPI_CH28>,
     pub ppi_ch29: PeripheralRef<'d, peripherals::PPI_CH29>,
 }
+#[cfg(feature = "nrf53")]
+pub struct Peripherals<'d> {
+    pub ppi_ch3: PeripheralRef<'d, peripherals::PPI_CH3>,
+    pub ppi_ch4: PeripheralRef<'d, peripherals::PPI_CH4>,
+    pub ppi_ch5: PeripheralRef<'d, peripherals::PPI_CH5>,
+    pub ppi_ch6: PeripheralRef<'d, peripherals::PPI_CH6>,
+    pub ppi_ch7: PeripheralRef<'d, peripherals::PPI_CH7>,
+    pub ppi_ch8: PeripheralRef<'d, peripherals::PPI_CH8>,
+    pub ppi_ch9: PeripheralRef<'d, peripherals::PPI_CH9>,
+    pub ppi_ch10: PeripheralRef<'d, peripherals::PPI_CH10>,
+    pub ppi_ch11: PeripheralRef<'d, peripherals::PPI_CH11>,
+    pub ppi_ch12: PeripheralRef<'d, peripherals::PPI_CH12>,
+}
 
 impl<'d> Peripherals<'d> {
     #[allow(clippy::too_many_arguments)]
+    #[cfg(feature = "nrf52")]
     pub fn new(
         ppi_ch17: impl Peripheral<P = peripherals::PPI_CH17> + 'd,
         ppi_ch18: impl Peripheral<P = peripherals::PPI_CH18> + 'd,
@@ -81,6 +96,34 @@ impl<'d> Peripherals<'d> {
             ppi_ch27: ppi_ch27.into_ref(),
             ppi_ch28: ppi_ch28.into_ref(),
             ppi_ch29: ppi_ch29.into_ref(),
+        }
+    }
+
+    #[allow(clippy::too_many_arguments)]
+    #[cfg(feature = "nrf53")]
+    pub fn new(
+        ppi_ch3: impl Peripheral<P = peripherals::PPI_CH3> + 'd,
+        ppi_ch4: impl Peripheral<P = peripherals::PPI_CH4> + 'd,
+        ppi_ch5: impl Peripheral<P = peripherals::PPI_CH5> + 'd,
+        ppi_ch6: impl Peripheral<P = peripherals::PPI_CH6> + 'd,
+        ppi_ch7: impl Peripheral<P = peripherals::PPI_CH7> + 'd,
+        ppi_ch8: impl Peripheral<P = peripherals::PPI_CH8> + 'd,
+        ppi_ch9: impl Peripheral<P = peripherals::PPI_CH9> + 'd,
+        ppi_ch10: impl Peripheral<P = peripherals::PPI_CH10> + 'd,
+        ppi_ch11: impl Peripheral<P = peripherals::PPI_CH11> + 'd,
+        ppi_ch12: impl Peripheral<P = peripherals::PPI_CH12> + 'd,
+    ) -> Self {
+        Peripherals {
+            ppi_ch3: ppi_ch3.into_ref(),
+            ppi_ch4: ppi_ch4.into_ref(),
+            ppi_ch5: ppi_ch5.into_ref(),
+            ppi_ch6: ppi_ch6.into_ref(),
+            ppi_ch7: ppi_ch7.into_ref(),
+            ppi_ch8: ppi_ch8.into_ref(),
+            ppi_ch9: ppi_ch9.into_ref(),
+            ppi_ch10: ppi_ch10.into_ref(),
+            ppi_ch11: ppi_ch11.into_ref(),
+            ppi_ch12: ppi_ch12.into_ref(),
         }
     }
 }
